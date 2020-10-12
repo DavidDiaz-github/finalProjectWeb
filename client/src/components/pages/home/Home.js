@@ -63,7 +63,7 @@ class Home extends Component {
                 <div className="container ">
                         <h1>Tendencias esta semana : 'Peliculas'</h1>    
                     <div className="row"> 
-                  {!this.state.trendingMovies ? <Spinner animation="border" /> : this.state.trendingMovies.map(elm => <TrendingCardMovie key={elm.id} {...this.props} {...elm} />)}
+                  {!this.state.trendingMovies ? <Spinner animation="border" /> : this.state.trendingMovies.map(elm => <TrendingCardMovie key={elm.id}  {...elm} />)}
                     </div><br/>
                     <h1>Tendencias esta semana : 'Series'</h1>
                     <div className="row">

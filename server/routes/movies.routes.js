@@ -32,7 +32,7 @@ router.post('/profile/addmovie/:id', (req, res) => {
 
 router.post('/profile/deleteFavMovie/:id', (req, res, next) => {
 
-    User.findByIdAndUpdate(req.body, { $pull: { favoriteMovies: req.params.id } })
+    User.findByIdAndUpdate(req.body, { $pull: { favoriteMovies: req.params.id } }, {new: true})
         .then(response => res.json(response))
         .catch(err => next(err))
 })

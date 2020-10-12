@@ -35,7 +35,7 @@ class MovieDetails extends Component {
     handleFav = () => {
 
         this.moviesService
-            .saveMovie(this.props.match.params.id, this.props.loggedInUser,this.state.movies)
+            .saveMovie(this.state.movies.imdb_id, this.props.loggedInUser, this.state.movies)
             .then(response => {
                 console.log('respose de movie details', response)
                 this.props.fetchUser()
@@ -90,7 +90,7 @@ class MovieDetails extends Component {
                             <div className="row profileComent">
                                 <ComentMovies {...this.props} />
                             </div>
-                            {this.props.loggedInUser && <Link className="btn btn-dark btnAdd" to={'/coment/form/' + this.state.movies.id}  >añadir comentario</Link>} 
+                            {this.props.loggedInUser && <Link className="btn btn-dark btnAdd" to={'/coment/form/' + this.state.movies.imdb_id}  >añadir comentario</Link>} 
                         </div>
                     </div>
                 </div>

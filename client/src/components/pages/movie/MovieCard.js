@@ -11,19 +11,20 @@ class MovieCard extends Component {
         super(props)
         this.moviesService = new moviesService()
     }
-    DeleteFavMovie = () => {
+    // DeleteFavMovie = () => {
 
-        this.moviesService
-            .deleteMovie(this.props.elm.id, this.props.loggedInUser)
-            .then(response => this.props.fetchUser())
-            .catch(err => console.log(err))
-    }
+    //     this.moviesService
+    //         .deleteMovie(this.props.elm.imdb_id, this.props.loggedInUser)
+    //         .then(response => this.props.fetchUser())
+    //         .then(response => this.props.getMoviesFavorite())
+    //         .catch(err => console.log(err))
+    // }
     render() {
         return (
             <>
                 <div className="col-lg-2 col-md-4 col-sm-6">
-                    <Link to={'/movie/' + this.props.elm.id} key={this.props.elm.id}><Image src={'https://image.tmdb.org/t/p/original' + this.props.elm.poster_path} rounded style={{ width: '90%', objectFit: 'cover', marginBottom: '10px' }} {...this.props}/></Link>
-                    <Button className="btn btn-danger delete" style={{ borderRadius: '50%' }} onClick={() => this.DeleteFavMovie()} {...this.props}>x</Button>
+                    <Link to={'/movie/' + this.props.elm.imdb_id} key={this.props.elm.id}><Image src={'https://image.tmdb.org/t/p/original' + this.props.elm.poster_path} rounded style={{ width: '90%', objectFit: 'cover', marginBottom: '10px' }} {...this.props}/></Link>
+                    <Button className="btn btn-danger delete" style={{ borderRadius: '50%' }} onClick={() => this.props.DeleteFavMovie(this.props.elm.imdb_id)} {...this.props}>x</Button>
                 </div>
             </>
         )        

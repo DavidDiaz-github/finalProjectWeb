@@ -29,11 +29,15 @@ class Coment extends Component {
         this.getAllComent()
     }
 
+    componentDidUpdate() {
+        console.log()
+    }
+
     render() {
         return (
             <div>
                 <div className="row" style={{marginLeft:'0px', justifyContent:'space-evenly'}}>
-                    {!this.state.coment ? <Spinner /> : this.state.coment.map(elm => <ComentCard data={elm} {...this.props}/>) }
+                    {!this.state.coment ? <Spinner /> : this.state.coment.map(elm => <ComentCard key={elm._id} data={elm} {...this.props}/>) }
                 </div>               
             </div>
         )
