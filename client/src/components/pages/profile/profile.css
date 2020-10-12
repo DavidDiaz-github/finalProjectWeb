@@ -1,0 +1,27 @@
+h1{
+    font-weight: 800;
+}
+
+.profile  h1{
+    font-weight: 600;
+    margin-top: 20px;
+    color: rgb(255, 248, 179);
+}
+
+.profile .cardInfo{
+    border-radius: 20px;
+    border: 2px solid rgb(255, 230, 0);
+    padding: 20px;
+    margin-bottom: 20px;
+
+}
+.bgProfile {
+    background-color: rgba(128, 128, 128, 0.657);
+    padding-bottom: 30px;
+    padding-top: 56px;
+}
+
+.comentProfile{
+    border: 2px solid rgb(255, 230, 0);
+
+}

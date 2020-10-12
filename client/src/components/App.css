@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700;900&display=swap');
+
+body {
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
+  
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+.Navbar{
+  border-bottom: 1px solid #12a3b8;
+}
+.Navbar Link{
+    color: #12a3b8;
+}
+
+.login{
+  padding-top: 80px ;
+  margin-bottom: 37%;
+}
+
+
+.bg{
+  padding-top: 70px;
+  background-color: #1f2325de;
+}
+.bg h1{
+  color: yellow;
+  font-weight: 700;
+}
+.bg h3{
+  font-weight: 600;
+}
+.bg p, li{
+  color: snow;
+}
+
+hr, .hrcolor {
+   background-color: yellow;
+}
+
+
+.trending {
+  width: 90px;
+  margin: 10px;
+  transition: all 1.7s ease
+}
+
+.trending img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.trending :hover{
+  width: 28%;
+  object-fit: cover;
+  position: absolute;
+  
+}
+
+.trending h1 {
+  font-size: 1em;
+}
+
+.celebritiesCard .a{
+  display: flex;
+  flex-direction: row;
+  color: black;
+}
+
+.celebritiesCard img{
+  width: 100%;
+  object-fit: cover;
+}
+
+.divCelCard{
+  width: 20%;
+}
+
+.divCenter{
+  padding-left: 60px;
+}
+
+.MvDetails{
+  display: flex;
+  flex-direction: row;
+  padding-top: 70px;
+}
+
+.MvDetails img{
+  width: 70%;
+  object-fit: cover;
+}
+
+.MvDetails .divTitle{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.divTitle2{
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+
+.divTitle2 img{
+  width: 20%;
+  object-fit: contain;
+  margin-right: 50px;
+}
+.li {
+  color: black;
+}
+
+.CardUpcoming img{
+  width: 60%;
+  object-fit: cover;
+  padding-top: 20px;
+}
+
+.CardUpcoming{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 40px;
+}
+.CardUpcoming .card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(3, 3, 3, 0.767);
+  
+}
+
+.bgUpcoming{
+  background-color: #1f2325a4;
+}
+
+.bgUpcoming h1{
+  color: rgb(255, 230, 0);
+  font-weight: 900;
+  padding-top: 60px;
+}
+.bodyUpComing div{
+  color: rgb(255, 230, 0);
+  font-weight: 900;
+}
+
+.bodyUpComing p{
+  color: snow;
+}
+
+.like{
+  width: 22%;
+  margin-left: 20%;
+  
+}
+
+.delete{
+  position: absolute;
+  left: 4%;
+  
+}
+
+.profileComent{
+  display: flex;
+  flex-direction: column;
+  border: 2px solid rgb(255, 230, 0);
+  padding: 20px;
+  margin: 30px 0;
+  border-radius: 10px;
+}
+
+.comentCard{
+  border: 2px solid rgb(255, 230, 0);
+  margin: 2px;
+  border-radius: 10px;
+  background-color: rgba(218, 216, 216, 0.657);
+  padding: 6px;
+}
+
+.comentCard h3{
+  font-weight: 700;
+}
+
+.btnAdd{
+  margin-bottom: 30px;
+}
+
+.SearchCard img{
+  width: 60px;
+  object-fit: cover;
+  margin-right: 30px;
+}
+
+.SearchCard span{
+  font-size: 1.7em;
+  font-weight: 900;
+}
+.SearchCard{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.Search{
+  margin-left: 20%;
+  width: 440px;
+}
+
+.Search input{
+  width: 80%;
+}
+
+
+
+footer{
+  background-color: #343b3f;
+  color: #12a3b8;
+  justify-content: space-evenly;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #12a3b8;
+  height: 50px;
+}
+
+footer p {
+  margin: 0px;
+}
+@media (max-width: 795px) {
+  .Search input {
+    width: 130%;
+  }
+  .Search {
+    margin-left: 0%;
+    width: 30%;
+    margin-right: 10%;
+  }
+  .Search button{
+    display: none;   
+  }
+  .login{
+      margin-bottom: 60%;
+  }
+}
