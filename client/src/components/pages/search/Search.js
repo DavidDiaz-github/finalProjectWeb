@@ -27,7 +27,6 @@ export default class Search extends Component {
         axios
             .get(`http://www.omdbapi.com/?apikey=b709d124&s=${this.state.search}`)
             .then((response) => { 
-                //console.log(response.data)
                 this.setState({
                     arraySearch: response.data,
                     search: '',
@@ -44,7 +43,6 @@ export default class Search extends Component {
                 <form onSubmit={this.handleFormSubmit}>
                     <input type="text" name="search" placeholder="Buscar película" value={this.state.search} onChange={this.handleInputChange} />
                     <Button type="submit" variant="outline-info">Buscar</Button>
-                    {/* {this.state.view === true &&  />} */}
                 </form> 
                 <Modal show={this.state.view} onHide={() => this.handleModal(false)}>
                     <Modal.Header closeButton>

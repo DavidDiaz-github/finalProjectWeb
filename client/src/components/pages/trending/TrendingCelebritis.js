@@ -2,7 +2,6 @@ import React from 'react'
 import Image from 'react-bootstrap/Image'
 
 const trendingCelebrities = props => {
-    // console.log(props)
     return (
         <div className="col-lg-6 col-md-12 celebritiesCard">
             <div className="a" key={props.id} to={props.id}>

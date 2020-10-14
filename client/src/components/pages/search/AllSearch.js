@@ -11,7 +11,6 @@ export default class AllSearch extends Component {
         }
     }
     render() {
-        //console.log('PROPS FIRST',this.props)
         return (
             <div>
                 {!this.props.Search ? <Spinner /> : this.state.array.map(elm => <AllSearchCard {...elm} {...this.props}/>)}              

@@ -194,7 +194,9 @@ hr, .hrcolor {
 }
 
 .btnAdd{
-  margin-bottom: 30px;
+  margin: 30px;
+  color: #12a3b8;
+  border: 2px solid #12a3b8;
 }
 
 .SearchCard img{

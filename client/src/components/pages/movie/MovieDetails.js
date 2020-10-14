@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 
 import moviesService from '../../../service/movies.service.js'
-import ComentMovies from '../coment/ComentMovies.js'
+import ComentCard from '../coment/ComentCard.js'
 import ComentForm from '../coment/ComentForm.js'
 import ApiService from '../../../service/api.service.js'
+import comentService from '../../../service/coment.service.js'
 
 import Image from 'react-bootstrap/Image'
 import Modal from 'react-bootstrap/Modal'
+import { Spinner } from 'react-bootstrap'
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel'
@@ -20,15 +21,30 @@ class MovieDetails extends Component {
             array: [],
             favoriteMovies: [],
             imageCarousel: [],
+            coment: [],
             view: false
         }
         this.moviesService = new moviesService()
         this.ApiService = new ApiService()
+        this.comentService = new comentService()
     }
 
     handleModal = view => this.setState({ view })
-  
+    //COMENT SERVICE
+    getComentMovie() {
+        this.comentService
+            .allComentMovie({movieId : this.props.match.params.id})
+            .then(response => {
+                let joined = this.state.coment.concat(response.data)
+                this.setState({ coment: joined })
+            })
+            .catch(err => console.log('error en allComent', err))
+    }
+    updateComent() {
+        this.setState({coment: []})
+    }
     
+    //BUSQUEDA DE PELICULAS
     getFindMovie(id) {
         this.ApiService
             .findMovies(id)
@@ -40,7 +56,6 @@ class MovieDetails extends Component {
         this.ApiService
             .findImageMovies(id)
             .then(response => {
-                console.log(response.data.backdrops)
                 this.setState({imageCarousel: response.data.backdrops})
             })
             .catch(err => console.log(err))
@@ -49,6 +64,7 @@ class MovieDetails extends Component {
     componentDidMount() {
         this.getFindMovie(this.props.match.params.id)
         this.getImageCarousel(this.props.match.params.id)
+        this.getComentMovie()
     }
 
 
@@ -63,21 +79,19 @@ class MovieDetails extends Component {
 
     }
     
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps,prevState) {
         if (prevProps.match.params.id != this.props.match.params.id) {
             this.getFindMovie(this.props.match.params.id)
             this.getImageCarousel(this.props.match.params.id)
-        }
-        // if (this.state.view === false) {
-        //     alert('se lia parda')
-            
-        // }
+            this.updateComent()
+            this.getComentMovie()
+        }   
     }
 
-    reload = () => {
-        window.location.reload(true);
+    update() {
+        this.updateComent()
+        this.getComentMovie()
     }
-
 
     render() {
         return (
@@ -86,9 +100,9 @@ class MovieDetails extends Component {
                     <div className="row MvDetails">
                         <div className="col-lg-6 col-xs-12">
                             <Image src={'https://image.tmdb.org/t/p/original' + this.state.movies.poster_path} alt={this.state.movies.original_title} rounded style={{marginBottom:'40px'}}/>
-                            <Carousel autoPlay interval="3000" transitionTime="3000" showArrows={true} infiniteLoop width='70%'>
-                                    {this.state.imageCarousel && this.state.imageCarousel.map(elm => <div><img src={'https://image.tmdb.org/t/p/original' + elm.file_path} alt={elm.vote_average} /></div>)}
-                                </Carousel>
+                            <Carousel autoPlay interval="3000" transitionTime="3000" showArrows={true} infiniteLoop width='70%' showIndicators={false} >
+                                {this.state.imageCarousel && this.state.imageCarousel.map(elm => <div><img src={'https://image.tmdb.org/t/p/original' + elm.file_path} alt={elm.vote_average} /></div>)}
+                            </Carousel>
                         </div>
                         <div className="col-lg-6 col-xs-12">
                             <div className="divTitle">
@@ -117,7 +131,9 @@ class MovieDetails extends Component {
                                 <h1>Comentarios</h1>
                             </div>
                             <div className="row profileComent">
-                                <ComentMovies {...this.props} />
+                                <div className="row" style={{marginLeft:'0px', justifyContent:'space-evenly'}}>
+                                    {!this.state.coment ? <Spinner /> : this.state.coment.map(elm => <ComentCard key={elm._id} data={elm} {...this.props} />) }
+                                </div>                  
                             </div>
                             {this.props.loggedInUser && <button className="btn btn-dark btnAdd" onClick={() => this.handleModal(true)}  >añadir comentario</button>} 
                         </div>
@@ -126,7 +142,7 @@ class MovieDetails extends Component {
                                 <Modal.Title style={{fontWeight:'700'}}>Nuevo Comentario</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <ComentForm imdb_id={this.state.movies.imdb_id} loggedInUser={this.props.loggedInUser} closeModal={() => this.handleModal(false)} reload={this.reload}/>
+                                <ComentForm imdb_id={this.state.movies.imdb_id} tmdb_id={this.state.movies.id} loggedInUser={this.props.loggedInUser} closeModal={() => this.handleModal(false)} update={() => this.update()}/>
                             </Modal.Body>
                         </Modal>
                     </div>

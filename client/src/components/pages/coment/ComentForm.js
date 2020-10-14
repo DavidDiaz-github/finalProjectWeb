@@ -13,6 +13,7 @@ class ComentForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            tmdbId: this.props.tmdb_id,
             idMovie: this.props.imdb_id,
             userID: this.props.loggedInUser._id,
             username: this.props.loggedInUser.username,
@@ -33,16 +34,14 @@ class ComentForm extends Component {
         this.comentService
             .newComent(this.state)
             .then(response => {
-                //console.log('comentario creado',response.data)
                 this.props.closeModal()
-                this.props.reload()
+                this.props.update()
             })
             .catch(err => console.log('-------ErroooooorComentForm:--------', { err }))
 
     }
 
     render() {
-        //console.log(this.props.loggedInUser)
         return (
             <Container className="login">
                 <main>

@@ -15,21 +15,17 @@ class Coment extends Component {
     }
 
     getAllComent() {
-        //console.log('user : +++++++++', this.props.loggedInUser._id)
         this.comentService
             .allComentProfile({userID : this.props.loggedInUser._id})
             .then(response => {
                 let joined = this.state.coment.concat(response.data)
                 this.setState({ coment: joined })
-                //console.log(this.state.coment)
             })
             .catch(err => console.log('error en allComent', err))
     }
     componentDidMount() {
         this.getAllComent()
     }
-
-    
 
     render() {
         return (
@@ -43,6 +39,3 @@ class Coment extends Component {
 }
 
 export default Coment
-
-// BOTON DE AÑADIR COMENTARIO PONER EN LA PAGINA DESEADA.
-// {this.props.loggedInUser && <Link className="btn btn-dark" to='/coment/form' >añadir comentario</Link>} 

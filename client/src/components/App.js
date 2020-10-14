@@ -9,7 +9,6 @@ import MovieDetails from './pages/movie/MovieDetails.js'
 import SeriesDetails from './pages/movie/SeriesDetails.js'
 import UpComing from './pages/upcomingMovies/UpcomingMovies.js'
 import Profile from './pages/profile/Profile.js'
-import ProfileEditForm from './pages/profile/ProfileEditForm.js'
 
 import Signup from './pages/signup/Signup'
 import Login from './pages/login/Login'
@@ -17,10 +16,6 @@ import Login from './pages/login/Login'
 import authService from './../service/auth.service'
 
 import './App.css'
-import ComentForm from './pages/coment/ComentForm.js';
-
-
-import ComentEditForm from './pages/coment/ComentEditForm.js'
 
 class App extends Component {
 
@@ -57,9 +52,6 @@ class App extends Component {
           <Route path="/signup" render={props => <Signup setTheUser={this.setTheUser} {...props} />} />
           <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />
           <Route path="/profile"  exact render={props => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser}  {...props} fetchUser={this.fetchUser} setTheUser={this.setTheUser}/> : <Redirect to="/login" />} />
-          {/* <Route path="/profile/edit"  render={props => this.state.loggedInUser ? <ProfileEditForm loggedInUser={this.state.loggedInUser} setTheUser={this.setTheUser} {...props} fetchUser={this.fetchUser}/> : <Redirect to="/login" />} /> */}
-          {/* <Route path="/coment/form/:id"  render={props => this.state.loggedInUser ? <ComentForm loggedInUser={this.state.loggedInUser}  {...props}/> : <Redirect to="/login" />} /> */}
-          <Route path='/prueba' render={() => <ComentEditForm />} />
         </Switch>
         <Footer />
       </>

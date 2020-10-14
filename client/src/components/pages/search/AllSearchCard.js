@@ -8,7 +8,6 @@ export default class AllSearchCard extends Component {
     }
     
     render() {
-        //console.log('props en ALLSEARCHCARD',this.props)
         return (
             <div>
                 <div className='SearchCard'>

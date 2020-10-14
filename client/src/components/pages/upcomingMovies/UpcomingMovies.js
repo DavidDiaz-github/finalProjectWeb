@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Spinner} from 'react-bootstrap/Spinner'
 
 import ApiService from '../../../service/api.service.js'
 
