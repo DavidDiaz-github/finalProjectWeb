@@ -38,47 +38,47 @@
 ## Folder distribution
 
 - --Components
-    |
-    |
-    |-------Layout
-    |          |
-    |          |----foter--Footer.js
-    |          |----navBar--NavBar.js
-    |
-    |-------Pages
-    |          |-----home--Home.js
-    |          |
-    |          |-----comment
-    |          |        |----Coment.js
-    |          |        |----ComentCard.js
-    |          |        |----ComentEditForm.js
-    |          |        |----CommentForm.js
-    |          |
-    |          |-----login--Login.js
-    |          |
-    |          |-----movie
-    |          |        |----MovieCard.js
-    |          |        |----MovieDetails.js
-    |          |        
-    |          |-----profile--Profile.js
-    |          |
-    |          |-----search--Search.js
-    |          |
-    |          |-----signup--Signup.js
-    |          |
-    |          |-----trending
-    |          |        |-----TrendingCard.js
-    |          |        |-----TrendingCelebrities.js
-    |          |
-    |          |-----upComingMovies--UpComingMovies.js          
-    |
-    |-------shared
-    |          |-----spiner
-    |                   |----Spiner.css
-    |                   |----Spiner.js
-    |
-    |-------App.js
-    |-------App.css
+-     |
+-     |
+-     |-------Layout
+-     |          |
+-     |          |----foter--Footer.js
+-     |          |----navBar--NavBar.js
+-     |
+-     |-------Pages
+-     |          |-----home--Home.js
+-     |          |
+-     |          |-----comment
+-     |          |        |----Coment.js
+-     |          |        |----ComentCard.js
+-     |          |        |----ComentEditForm.js
+-     |          |        |----CommentForm.js
+-     |          |
+-     |          |-----login--Login.js
+-     |          |
+-     |          |-----movie
+-     |          |        |----MovieCard.js
+-     |          |        |----MovieDetails.js
+-     |          |        
+-     |          |-----profile--Profile.js
+-     |          |
+-     |          |-----search--Search.js
+-     |          |
+-     |          |-----signup--Signup.js
+-     |          |
+-     |          |-----trending
+-     |          |        |-----TrendingCard.js
+-     |          |        |-----TrendingCelebrities.js
+-     |          |
+-     |          |-----upComingMovies--UpComingMovies.js          
+-     |
+-     |-------shared
+-     |          |-----spiner
+-     |                   |----Spiner.css
+-     |                   |----Spiner.js
+-     |
+-     |-------App.js
+-     |-------App.css
     
 
 ## Models
