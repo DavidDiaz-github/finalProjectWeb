@@ -37,7 +37,7 @@
 
 ## Folder distribution
 
---Components
+- --Components
     |
     |
     |-------Layout
