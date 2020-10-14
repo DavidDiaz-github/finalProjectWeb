@@ -25,10 +25,10 @@ h1 {
 
 .bg{
   padding-top: 70px;
-  background-color: #1f2325de;
+  background-color: #404A4F;
 }
 .bg h1{
-  color: yellow;
+  color: #12A3B8;
   font-weight: 700;
 }
 .bg h3{
@@ -39,7 +39,7 @@ h1 {
 }
 
 hr, .hrcolor {
-   background-color: yellow;
+   background-color: #12A3B8;
 }
 
 
@@ -131,25 +131,27 @@ hr, .hrcolor {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(3, 3, 3, 0.767);
-  
+  /* background-color: #c9c9cf; */
+  background-color: #404A4F;
+  border-color: #12a3b8;
 }
 
 .bgUpcoming{
-  background-color: #1f2325a4;
+  background-color: #404A4F;
 }
 
 .bgUpcoming h1{
-  color: rgb(255, 230, 0);
+  color: #12a3b8;
   font-weight: 900;
   padding-top: 60px;
 }
 .bodyUpComing div{
-  color: rgb(255, 230, 0);
+  color: #12a3b8;
   font-weight: 900;
 }
 
 .bodyUpComing p{
+  /* color: black; */
   color: snow;
 }
 
@@ -168,22 +170,27 @@ hr, .hrcolor {
 .profileComent{
   display: flex;
   flex-direction: column;
-  border: 2px solid rgb(255, 230, 0);
+  border: 2px solid #12a3b8;
   padding: 20px;
   margin: 30px 0;
   border-radius: 10px;
 }
 
 .comentCard{
-  border: 2px solid rgb(255, 230, 0);
+  border: 2px solid #12a3b8;
   margin: 2px;
   border-radius: 10px;
-  background-color: rgba(218, 216, 216, 0.657);
+  background-color: #404a4f;
   padding: 6px;
 }
 
 .comentCard h3{
   font-weight: 700;
+  color: #12a3b8;
+}
+
+.comentCard p {
+  color: snow;
 }
 
 .btnAdd{
@@ -214,9 +221,14 @@ hr, .hrcolor {
 
 .Search input{
   width: 80%;
+  height: 36px;
+  border-radius: 7px;
+  margin-right: 6px;
+  border-color: #12a3b8;
+  color: #12a3b8;
+  font-weight: 600;
+  background-color: #c9c9cf;
 }
-
-
 
 footer{
   background-color: #343b3f;

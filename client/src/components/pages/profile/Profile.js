@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
+
 import { Spinner } from 'react-bootstrap'
+import Modal from 'react-bootstrap/Modal'
 
 import MovieCard from '../movie/MovieCard.js'
 import SerieCard from '../movie/SerieCard.js'
 import moviesService from '../../../service/movies.service.js'
 import Coment from '../coment/Coment.js'
+import ProfileEditForm from './ProfileEditForm.js'
+import ApiService from '../../../service/api.service.js'
 
 import './profile.css'
 
@@ -18,26 +21,27 @@ class Profile extends Component {
             arrayMovies: [],
             arraySeries: [],
             coment: [],
-            arrayMoviesId: this.props.loggedInUser.favoriteMovies
-            
+            arrayMoviesId: this.props.loggedInUser.favoriteMovies,
+            view: false            
         }
         this.moviesService = new moviesService()
+        this.ApiService = new ApiService()
     }
 
+    handleModal = view => this.setState({ view })
+
     getMoviesFavorite() {
-        //this.props.fetchUser()
+        this.props.fetchUser()
         this.props.loggedInUser && this.state.arrayMoviesId.map(id => {
 
-                axios
-                    .get(`https://api.themoviedb.org/3/movie/${id}?api_key=9fafbea01209e6ebcaea05055a80313b`)
-                    .then((response) => {
-                        let joined = this.state.arrayMovies.concat(response.data)
-                        this.setState({ arrayMovies: joined })
-                        //this.props.fetchUser()
-                    })
-                    .catch((error) => console.log(error))
-            })
-        
+            this.ApiService
+                .findMovies(id)
+                .then(response => {
+                    let joined = this.state.arrayMovies.concat(response.data)
+                    this.setState({ arrayMovies: joined})
+                })
+                .catch(err => console.log(err))
+            })       
     }
 
     
@@ -45,15 +49,14 @@ class Profile extends Component {
     getSeriesFavorite() {
         this.props.loggedInUser.favoriteSeries.map(id => {
 
-                axios
-                    .get(`https://api.themoviedb.org/3/tv/${id}?api_key=9fafbea01209e6ebcaea05055a80313b`)
-                    .then((response) => {
-                        let joined = this.state.arraySeries.concat(response.data)
-                        this.setState({ arraySeries: joined })
-                    })
-                    .catch((error) => console.log(error))
-            })
-        
+            this.ApiService
+                .findSeries(id)
+                .then(response => {
+                    let joined = this.state.arraySeries.concat(response.data)
+                    this.setState({ arraySeries: joined})
+                })
+                .catch(err => console.log(err))
+        })     
     }
 
     componentDidMount() {
@@ -61,49 +64,23 @@ class Profile extends Component {
         this.getSeriesFavorite()
     }
     
-    componentDidUpdate(prevState) {
-        console.log('prevProps', prevState.loggedInUser.favoriteMovies.length)
-        console.log('state', this.state.arrayMoviesId.length)
-         if (prevState.loggedInUser.favoriteMovies.length != this.state.arrayMoviesId.length) {
-            //this.setState(this.state.arrayMoviesId)
-            //this.setState(this.props.fetchUser())
-            alert('El estado ha cambiado')
-            //this.getMoviesFavorite()
-        }
-    }
-
-
     DeleteFavMovie = (id) => {
 
         this.moviesService
             .deleteMovie(id, this.props.loggedInUser)
-            //.then(() => this.getMoviesFavorite())
-            .then(response => response.data.favoriteMovies)
-                    //this.state.arrayMovies.concat(elm)
-                    //this.setState({ arrayMovies: elm })
-            
             .then(response => {
-                console.log(response)
-                this.setState({ arrayMoviesId: response })
-                this.props.fetchUser()
+                this.setState({ arrayMoviesId: response.data.favoriteMovies, arrayMovies: [] }, () => this.getMoviesFavorite())
             })
-            // .then(res => console.log(res))
-            // .then(() => this.props.fetchUser())
-            //.then(() => this.getMoviesFavorite())
-            //.then(() => this.getMoviesFavorite())
             .catch(err => console.log(err))
     }
-    
 
     render() {
-        console.log(this.state.arrayMoviesId)
-        //console.log()
         return (
             <div className="bgProfile">
                 <div className="container profile">
                     <div className="row" style={{justifyContent:'space-between'}}>
                         <h1>BIENVENID@ -  {this.props.loggedInUser.username}</h1>
-                        <Link to={'/profile/edit/'+ this.props.loggedInUser._id}  className='btn btn-dark' style={{height:'40px', marginTop:'1%'}}>Editar Perfil</Link>
+                        <button className="btn btn-dark btnAdd" onClick={() => this.handleModal(true)} >Editar Perfil</button>
                     </div>
                     <hr />
                     <div className="row cardInfo">
@@ -127,6 +104,14 @@ class Profile extends Component {
                         <h1>MIS COMENTARIOS</h1>
                         <Coment {...this.props}/>
                     </div>
+                    <Modal show={this.state.view} onHide={() => this.handleModal(false)}>
+                        <Modal.Header closeButton>
+                            <Modal.Title style={{fontWeight:'700'}}>Editar Usuario</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <ProfileEditForm user_id={this.props.loggedInUser._id} loggedInUser={this.props.loggedInUser} closeModal={() => this.handleModal(false)} setTheUser={this.props.setTheUser} fetchUser={this.props.fetchUser}/>
+                        </Modal.Body>
+                    </Modal>
                 </div>
             </div>
             

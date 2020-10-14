@@ -14,14 +14,14 @@ router.post('/signup', (req, res, next) => {
 
     if (!username || !password || !email) {
         res.status(400).json({
-            message: 'Empty fields'
+            message: 'Rellena todos los campos.'
         });
         return;
     }
 
     if (password.length < 2) {
         res.status(400).json({
-            message: 'Weak password'
+            message: 'contraseña debil.'
         });
         return;
     }
@@ -32,14 +32,14 @@ router.post('/signup', (req, res, next) => {
 
         if (err) {
             res.status(500).json({
-                message: "Username check error"
+                message: "Nombre de usuario incorrecto."
             });
             return;
         }
 
         if (foundUser) {
             res.status(400).json({
-                message: 'Username taken'
+                message: ' El nombre de usuario ya existe.'
             });
             return;
         }
@@ -56,7 +56,7 @@ router.post('/signup', (req, res, next) => {
         aNewUser.save(err => {
             if (err) {
                 res.status(500).json({
-                    message: 'Error saving user to DB'
+                    message: 'Error al guardar el usuario en la DB.'
                 });
                 return;
             }
@@ -85,7 +85,7 @@ router.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, theUser, failureDetails) => {
         if (err) {
             res.status(500).json({
-                message: 'Error authenticating user'
+                message: 'Error al autenticar al usuario.'
             });
             return;
         }

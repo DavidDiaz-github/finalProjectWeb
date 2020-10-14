@@ -14,7 +14,8 @@ class Login extends Component {
         super(props)
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            message:''
         }
         this.authService = new authService()
     }
@@ -34,7 +35,7 @@ class Login extends Component {
                 this.props.setTheUser(response.data)
                 this.props.history.push('/')
             })
-            .catch(err => console.log('Erroooooor:', { err }))
+            .catch(err => this.setState({ message: err.response.data.message }))
     }
 
 
@@ -57,7 +58,8 @@ class Login extends Component {
                                     <Form.Label>Contraseña</Form.Label>
                                     <Form.Control type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
                                 </Form.Group>
-
+                                {this.state.message && <h2 style={{ color: 'red', fontWeight: '900' }}>{this.state.message}</h2>}
+                                
                                 <Button variant="dark" type="submit">Acceder</Button>
                             </Form>
                         </Col>

@@ -5,23 +5,23 @@ h1{
 .profile  h1{
     font-weight: 600;
     margin-top: 20px;
-    color: rgb(255, 248, 179);
+    color: #12a3b8;
 }
 
 .profile .cardInfo{
     border-radius: 20px;
-    border: 2px solid rgb(255, 230, 0);
+    border: 2px solid #12a3b8;
     padding: 20px;
     margin-bottom: 20px;
 
 }
 .bgProfile {
-    background-color: rgba(128, 128, 128, 0.657);
+    background-color: #404A4F;
     padding-bottom: 30px;
     padding-top: 56px;
 }
 
 .comentProfile{
-    border: 2px solid rgb(255, 230, 0);
+    border: 2px solid #12a3b8;
 
 }

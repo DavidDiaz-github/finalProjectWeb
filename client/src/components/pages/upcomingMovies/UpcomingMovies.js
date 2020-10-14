@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import {Spinner} from 'react-bootstrap/Spinner'
+
+import ApiService from '../../../service/api.service.js'
 
 import UpComingCard from './UpComingCard.js'
 
@@ -7,17 +9,18 @@ class UpComing extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            upComing: []
+            moviesUpComing: []
         }
+        this.ApiService = new ApiService()
     }
     getUpComing() {
-
-    axios
-      .get('https://api.themoviedb.org/3/movie/upcoming?api_key=9fafbea01209e6ebcaea05055a80313b&language=es-ES&page=1')
-      .then((response) => { 
-        this.setState({ upComing: response.data.results });
-      })
-      .catch((error) => console.log(error));
+        this.ApiService
+            .upComing()
+            .then(response => {
+                let joined = this.state.moviesUpComing.concat(response.data.results)
+                this.setState({ moviesUpComing: joined })
+            })
+            .catch(err => console.log(err))
     }
 
     componentDidMount() {
@@ -30,7 +33,7 @@ class UpComing extends Component {
                     <div className="container" style={{ paddingTop: '40px' }}>
                         <h1>Estrenos</h1>
                         <div className="row">
-                            {this.state.upComing.map(elm => <UpComingCard key={elm.id} {...elm} />)}
+                            {this.state.moviesUpComing.map(elm => <UpComingCard key={elm.id} {...elm} />)}
                         </div>
                     </div> 
                 </div>

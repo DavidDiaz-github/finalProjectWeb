@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-
 import axios from 'axios'
 
 import { Spinner } from 'react-bootstrap'
 
-
+import ApiService from '../../../service/api.service.js'
 import TrendingCardMovie from '../trending/TrendingCardMovie.js'
 import TrendingCardTv from '../trending/TrendingCardTv.js'
 import TrendingCelebritiesCard from '../trending/TrendingCelebritis.js'
@@ -18,45 +17,46 @@ class Home extends Component {
             trendingTv: [],
             trendingCelebrities: []
         }
+      this.ApiService = new ApiService()
     }
 
     getTrendingMovies() {
-
-    axios
-      .get(`https://api.themoviedb.org/3/trending/movie/week?api_key=9fafbea01209e6ebcaea05055a80313b`)
-      .then((response) => { 
-        this.setState({ trendingMovies: response.data.results });
-      })
-      .catch((error) => console.log(error));
+        this.ApiService
+            .moviesTrending()
+            .then(response => {
+                let joined = this.state.trendingMovies.concat(response.data.results)
+                this.setState({ trendingMovies: joined })
+            })
+            .catch(err => console.log(err))
     }
 
-    getTrendingtv() {
-
-    axios
-      .get(`https://api.themoviedb.org/3/trending/tv/week?api_key=9fafbea01209e6ebcaea05055a80313b`)
-      .then((response) => {
-        this.setState({ trendingTv: response.data.results });
-      })
-      .catch((error) => console.log(error));
+    getTrendingTv() {
+        this.ApiService
+            .seriesTrending()
+            .then(response => {
+                let joined = this.state.trendingTv.concat(response.data.results)
+                this.setState({ trendingTv: joined })
+            })
+            .catch(err => console.log(err))
     }
 
     getTrendingtCelebrities() {
-
-    axios
-      .get(`https://api.themoviedb.org/3/trending/person/week?api_key=9fafbea01209e6ebcaea05055a80313b`)
-      .then((response) => { 
-        this.setState({ trendingCelebrities: response.data.results });
-      })
-      .catch((error) => console.log(error));
+        this.ApiService
+            .celebritiesTrending()
+            .then(response => {
+                let joined = this.state.trendingCelebrities.concat(response.data.results)
+                this.setState({ trendingCelebrities: joined })
+            })
+            .catch(err => console.log(err))
     }
+  
     componentDidMount() {
         this.getTrendingMovies()
-        this.getTrendingtv()
+        this.getTrendingTv()
         this.getTrendingtCelebrities()
     }
 
     render() {
-        // const id = this.props.match.params.id
         return (
             <>
                 <div className="bg">

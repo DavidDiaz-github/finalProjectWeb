@@ -32,21 +32,22 @@ class ProfileEditForm extends Component {
         this.moviesService
             .saveProfile(this.props.loggedInUser._id ,this.state)
             .then(response => {
-                //console.log('esto es response data de profileeditform', response)
+                //console.log('esto es response data de profileeditform', response.data)
                 this.props.setTheUser(response.data)
-                
-                this.props.history.push('/profile')
+                this.props.fetchUser()
+                this.props.closeModal()
+                //this.props.history.push('/profile')
             })
             .catch(err => console.log('-------ErroooooorProfileform:', {err}))
     }
 
     render() {
+        //console.log('---------_____------',this.props)
         return (
-            <Container>
+            <Container className="login">
                 <main>
                     <Row className="justify-content-center">
-                        <Col md={{ span: 5 }}>
-                            <h1>Editar usuario</h1>
+                        <Col md={{ span: 12 }}>
                             <Form onSubmit={this.handleFormSubmit}>
                                 <Form.Group>
                                     <Form.Label>Nombre de usuario</Form.Label>

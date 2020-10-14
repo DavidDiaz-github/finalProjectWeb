@@ -28,10 +28,15 @@ class ComentMovies extends Component {
     componentDidMount() {
         this.getComentMovie()
     }
-    componentDidUpdate(prevProps) {
-        //console.log(prevProps.match.params.id)
-        //console.log(this.props.match.params.id)
+
+    updateComent() {
+        this.setState({coment: []})
+    }
+    componentDidUpdate(prevProps, prevState) {
+        console.log('prev state',prevState.coment.length)
+        console.log( 'state',this.state.coment.length)
         if (prevProps.match.params.id != this.props.match.params.id) {
+            this.updateComent()
             this.getComentMovie()
             //alert('cambio de comentario')
         }
@@ -41,7 +46,7 @@ class ComentMovies extends Component {
         return (
             <div>
                 <div className="row" style={{marginLeft:'0px', justifyContent:'space-evenly'}}>
-                    {!this.state.coment ? <Spinner /> : this.state.coment.map(elm => <ComentCard key={elm._id} data={elm} {...this.props}/>) }
+                    {!this.state.coment ? <Spinner /> : this.state.coment.map(elm => <ComentCard key={elm._id} data={elm} {...this.props} />) }
                 </div>               
             </div>
         )

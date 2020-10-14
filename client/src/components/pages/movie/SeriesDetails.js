@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 import Image from 'react-bootstrap/Image'
 
+import ApiService from '../../../service/api.service.js'
 import moviesService from '../../../service/movies.service.js'
 import ComentMovies from '../coment/ComentMovies.js'
 
@@ -16,20 +16,19 @@ class SeriesDetails extends Component {
             path: ''
         }
         this.moviesService = new moviesService()
+        this.ApiService = new ApiService()
     }
 
        
     getFindSeries(id) {
-    axios
-      .get(`https://api.themoviedb.org/3/tv/${id}?api_key=9fafbea01209e6ebcaea05055a80313b`)
-      .then((response) => { 
-        this.setState({ series: response.data });
-      })
-      .catch((error) => console.log(error));
+    this.ApiService
+            .findSeries(id)
+            .then(response => {this.setState({series: response.data})})
+            .catch(err => console.log(err))
     }
+
     componentDidMount() {
         this.getFindSeries(this.props.match.params.id)
-
     }
 
     handleFav = () => {

@@ -14,8 +14,10 @@ class Signup extends Component {
         this.state = {
             username: '',
             password: '',
-            email:''
+            email: '',
+            message:''
         }
+        
         this.authService = new authService()
     }
 
@@ -34,14 +36,12 @@ class Signup extends Component {
                 this.props.setTheUser(response.data)
                 this.props.history.push('/')
             })
-            .catch(err => console.log('Erroooooor:', { err }))
+            .catch(err => this.setState({ message: err.response.data.message }) )
     }
 
 
     render() {
-
-        return (
-
+        return (          
             <Container className="login">
                 <main>
                     <Row className="justify-content-center">
@@ -62,7 +62,7 @@ class Signup extends Component {
                                     <Form.Label>Email</Form.Label>
                                     <Form.Control type="email" name="email" value={this.state.email} onChange={this.handleInputChange} />
                                 </Form.Group>
-
+                                {this.state.message && <h2 style={{color:'red', fontWeight:'900'}}>{this.state.message}</h2>}
                                 <Button variant="dark" type="submit">Registrarme</Button>
                             </Form>
                         </Col>

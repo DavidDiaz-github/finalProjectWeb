@@ -13,7 +13,7 @@ class ComentForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            idMovie: this.props.match.params.id,
+            idMovie: this.props.imdb_id,
             userID: this.props.loggedInUser._id,
             username: this.props.loggedInUser.username,
             coment:''
@@ -34,7 +34,8 @@ class ComentForm extends Component {
             .newComent(this.state)
             .then(response => {
                 //console.log('comentario creado',response.data)
-                this.props.history.goBack()
+                this.props.closeModal()
+                this.props.reload()
             })
             .catch(err => console.log('-------ErroooooorComentForm:--------', { err }))
 
@@ -43,15 +44,14 @@ class ComentForm extends Component {
     render() {
         //console.log(this.props.loggedInUser)
         return (
-            <Container>
+            <Container className="login">
                 <main>
                     <Row className="justify-content-center">
-                        <Col md={{ span: 5 }}>
-                            <h1>Nuevo Comentario</h1>
+                        <Col md={{ span: 12 }}>
                             <Form onSubmit={this.handleFormSubmit}>
                                 <Form.Group>
                                     <Form.Label>Comentario : </Form.Label>
-                                    <Form.Control type="textarea" name="coment" value={this.state.coment} onChange={this.handleInputChange} placeholder='Escribe tu comentario aqui.'/>
+                                    <Form.Control rows={6} as="textarea" type="textarea" name="coment" value={this.state.coment} onChange={this.handleInputChange} placeholder='Escribe tu comentario aqui.'/>
                                 </Form.Group>
                                 <Button variant="dark" type="submit">Guardar</Button>
                             </Form>

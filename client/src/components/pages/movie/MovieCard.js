@@ -11,14 +11,6 @@ class MovieCard extends Component {
         super(props)
         this.moviesService = new moviesService()
     }
-    // DeleteFavMovie = () => {
-
-    //     this.moviesService
-    //         .deleteMovie(this.props.elm.imdb_id, this.props.loggedInUser)
-    //         .then(response => this.props.fetchUser())
-    //         .then(response => this.props.getMoviesFavorite())
-    //         .catch(err => console.log(err))
-    // }
     render() {
         return (
             <>

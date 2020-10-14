@@ -22,7 +22,7 @@ router.post('/profile/edit/:id', (req, res) => {
 
 router.post('/profile/addmovie/:id', (req, res) => {
     
-    User.findByIdAndUpdate(req.body, { $addToSet: { favoriteMovies: req.params.id } } )
+    User.findByIdAndUpdate(req.body, { $addToSet: { favoriteMovies: req.params.id } }, {new: true} )
         .then(response => {
             //console.log('esto es response en servidor', response)
             res.json(response)
