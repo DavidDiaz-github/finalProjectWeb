@@ -4,7 +4,7 @@
 
 ## Link
 
-<img width="1440" alt="screenShot" src="">
+<img width="1440" alt="FinalProject" src="https://user-images.githubusercontent.com/60430655/96006957-50207e00-0e3e-11eb-9269-46340d69ac2a.png">
 
 ## Install
 
