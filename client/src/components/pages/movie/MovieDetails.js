@@ -5,6 +5,7 @@ import ComentCard from '../coment/ComentCard.js'
 import ComentForm from '../coment/ComentForm.js'
 import ApiService from '../../../service/api.service.js'
 import comentService from '../../../service/coment.service.js'
+import logo from './video.png'
 
 import Image from 'react-bootstrap/Image'
 import Modal from 'react-bootstrap/Modal'
@@ -121,7 +122,7 @@ class MovieDetails extends Component {
                                 </ul>
                             </div>
                             <div>
-                                <a target="_blank" href={this.state.movies.homepage} className="btn btn-dark">Ver película</a>
+                                <a target="_blank" href={this.state.movies.homepage} className="btn video">Ver película<img src={logo} alt='movie' style={{width:'30px', marginLeft:'5px'}}/></a>
                                 {this.props.loggedInUser && <button className="btn btn-dark like"  onClick={() => this.handleFav()}>+ añadir a favoritos</button>}
 
                             </div>
