@@ -158,7 +158,16 @@ hr, .hrcolor {
 .like{
   width: 22%;
   margin-left: 20%;
-  
+  color: #12a3b8;
+  border: 2px solid #12a3b8;
+  font-weight: 600;
+  width: auto;
+  height: 46px;
+}
+
+.video{
+  border: 2px solid #343b3f;
+  font-weight: 600;
 }
 
 .delete{

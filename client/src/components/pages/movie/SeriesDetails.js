@@ -7,6 +7,7 @@ import ApiService from '../../../service/api.service.js'
 import moviesService from '../../../service/movies.service.js'
 import ComentMovies from '../coment/ComentMovies.js'
 
+import logo from './video.png'
 class SeriesDetails extends Component {
     constructor(props) {
         super(props)
@@ -68,14 +69,14 @@ class SeriesDetails extends Component {
                                 </ul>
                             </div>
                             <div>
-                                <a target="_blank" href={this.state.series.homepage} className="btn btn-dark">Ver serie</a>
-                                {this.props.loggedInUser && <Link className="btn btn-danger like" onClick={() => this.handleFav()}>LIKE</Link>}
+                                <a target="_blank" href={this.state.series.homepage} className="btn video">Ver serie<img src={logo} alt='movie' style={{width:'30px', marginLeft:'5px'}}/></a>
+                                {this.props.loggedInUser && <Link className="btn btn-dark like" onClick={() => this.handleFav()}>+ añadir a favoritos</Link>}
 
                             </div>
                         </div>
                         <div className="row" style={{display:'flex', flexDirection:'column', width:'100%',paddingLeft: '6%'}}>
-                            <div className="h" style={{width:'100%'}}>
-                                <h1>Comentarios</h1>
+                            <div className="h" style={{width:'100%', marginTop:'30px'}}>
+                                <h2 style={{fontWeight:'600'}}>Comentarios</h2>
                             </div>
                             <div className="row profileComent">
                                 <ComentMovies {...this.props} />

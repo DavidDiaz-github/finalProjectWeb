@@ -122,13 +122,13 @@ class MovieDetails extends Component {
                             </div>
                             <div>
                                 <a target="_blank" href={this.state.movies.homepage} className="btn btn-dark">Ver película</a>
-                                {this.props.loggedInUser && <button className="btn btn-danger like"  onClick={() => this.handleFav()}>LIKE</button>}
+                                {this.props.loggedInUser && <button className="btn btn-dark like"  onClick={() => this.handleFav()}>+ añadir a favoritos</button>}
 
                             </div>
                         </div>
                         <div className="row" style={{display:'flex', flexDirection:'column', width:'100%',paddingLeft: '6%'}}>
                             <div className="h" style={{width:'100%'}}>
-                                <h1>Comentarios</h1>
+                                <h2 style={{fontWeight:'600'}}>Comentarios</h2>
                             </div>
                             <div className="row profileComent">
                                 <div className="row" style={{marginLeft:'0px', justifyContent:'space-evenly'}}>
